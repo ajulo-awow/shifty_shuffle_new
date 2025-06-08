@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dly2ovwprbrpb"]
+[gd_scene load_steps=13 format=3 uid="uid://dly2ovwprbrpb"]
 
 [ext_resource type="Texture2D" uid="uid://4bxvj8b4y1o3" path="res://sprites/UI/card_holder/new_cardholder.png" id="6_fagfu"]
 [ext_resource type="Texture2D" uid="uid://bngxuc60lvgsb" path="res://sprites/UI/point_holders/opp_points_holder.png" id="6_iccyr"]
@@ -8,10 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://blm6b626agf7q" path="res://sprites/UI/slots/new_opp_card_slot.png" id="7_ssqxr"]
 [ext_resource type="Texture2D" uid="uid://di001w8mn8h7s" path="res://sprites/placeholder/blank_400x300.png" id="8_psj4q"]
 [ext_resource type="Script" path="res://scripts/managers/card_manager.gd" id="8_ssqxr"]
+[ext_resource type="PackedScene" uid="uid://388i0jgmhxec" path="res://scenes/objects/card.tscn" id="9_ba085"]
 [ext_resource type="PackedScene" uid="uid://kfhp6xewmgma" path="res://scenes/objects/slot.tscn" id="10_s6d7f"]
 [ext_resource type="Texture2D" uid="uid://c20h2ngkiiuel" path="res://sprites/objects/player_cards/back_of_card.png" id="11_6gfjl"]
-[ext_resource type="Script" path="res://scripts/objects/deck.gd" id="11_iccyr"]
-[ext_resource type="Script" path="res://scripts/managers/player_hand.gd" id="11_vcwo2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcwo2"]
 size = Vector2(96, 128)
@@ -75,6 +74,9 @@ texture = ExtResource("7_ssqxr")
 [node name="card_manager" type="Node2D" parent="."]
 script = ExtResource("8_ssqxr")
 
+[node name="card" parent="card_manager" instance=ExtResource("9_ba085")]
+position = Vector2(352, 288)
+
 [node name="player_card_slots" type="Node2D" parent="."]
 
 [node name="slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
@@ -87,11 +89,9 @@ position = Vector2(627.56, 524)
 position = Vector2(740.16, 523.16)
 
 [node name="player_hand" type="Node2D" parent="."]
-script = ExtResource("11_vcwo2")
 
 [node name="deck" type="Node2D" parent="."]
 position = Vector2(60, 524)
-script = ExtResource("11_iccyr")
 
 [node name="Sprite2D" type="Sprite2D" parent="deck"]
 scale = Vector2(2, 2)
