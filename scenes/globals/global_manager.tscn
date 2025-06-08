@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://6r1rgrjqr0d3"]
 
 [ext_resource type="Script" path="res://scripts/globals/global_manager.gd" id="1_47qb4"]
-[ext_resource type="AudioStream" uid="uid://6o4xbrhim4k4" path="res://audio/8bit_Sketchbook 2024-11-20.wav" id="2_62f8u"]
+[ext_resource type="AudioStream" uid="uid://6o4xbrhim4k4" path="res://style/audio/8bit_Sketchbook 2024-11-20.wav" id="2_62f8u"]
 
 [node name="global_manager" type="Node"]
 script = ExtResource("1_47qb4")

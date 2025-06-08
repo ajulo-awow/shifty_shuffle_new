@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dly2ovwprbrpb"]
+[gd_scene load_steps=16 format=3 uid="uid://dly2ovwprbrpb"]
 
 [ext_resource type="Texture2D" uid="uid://4bxvj8b4y1o3" path="res://sprites/UI/card_holder/new_cardholder.png" id="6_fagfu"]
 [ext_resource type="Texture2D" uid="uid://bngxuc60lvgsb" path="res://sprites/UI/point_holders/opp_points_holder.png" id="6_iccyr"]
@@ -6,12 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://sd0rb82b1bxu" path="res://sprites/UI/point_holders/points_holder.png" id="7_niwpp"]
 [ext_resource type="Texture2D" uid="uid://uelagyhbt58j" path="res://sprites/UI/card_holder/new_opp_card_holder.png" id="7_psj4q"]
 [ext_resource type="Texture2D" uid="uid://blm6b626agf7q" path="res://sprites/UI/slots/new_opp_card_slot.png" id="7_ssqxr"]
+[ext_resource type="Theme" uid="uid://ssqqtgsljnes" path="res://style/themes/peanut_money.tres" id="8_jbdb8"]
 [ext_resource type="Texture2D" uid="uid://di001w8mn8h7s" path="res://sprites/placeholder/blank_400x300.png" id="8_psj4q"]
 [ext_resource type="Script" path="res://scripts/managers/card_manager.gd" id="8_ssqxr"]
 [ext_resource type="PackedScene" uid="uid://kfhp6xewmgma" path="res://scenes/objects/slot.tscn" id="10_s6d7f"]
 [ext_resource type="Texture2D" uid="uid://c20h2ngkiiuel" path="res://sprites/objects/player_cards/back_of_card.png" id="11_6gfjl"]
 [ext_resource type="Script" path="res://scripts/managers/player_hand.gd" id="11_ufn5a"]
 [ext_resource type="Script" path="res://scripts/objects/deck.gd" id="11_vvfaq"]
+[ext_resource type="Script" path="res://scripts/managers/input_manager.gd" id="13_yx2px"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcwo2"]
 size = Vector2(96, 128)
@@ -31,46 +33,75 @@ mouse_filter = 2
 
 [node name="Blank400x300" type="TextureRect" parent="UI"]
 modulate = Color(0.992157, 0.901961, 0.933333, 1)
+z_index = -3
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("8_psj4q")
 
 [node name="NewCardholder" type="TextureRect" parent="UI"]
+z_index = -3
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("6_fagfu")
 
 [node name="NewOppCardHolder" type="TextureRect" parent="UI"]
+z_index = -3
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("7_psj4q")
 
 [node name="OppPointsHolder" type="TextureRect" parent="UI"]
+z_index = -3
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("6_iccyr")
 
 [node name="PointsHolder" type="TextureRect" parent="UI"]
+z_index = -3
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("7_niwpp")
 
 [node name="NewCardSlots" type="TextureRect" parent="UI"]
+z_index = -3
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("6_psj4q")
 
 [node name="NewOppCardSlot" type="TextureRect" parent="UI"]
+z_index = -3
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("7_ssqxr")
+
+[node name="player_points" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 320.0
+offset_right = 136.0
+offset_bottom = 448.0
+theme = ExtResource("8_jbdb8")
+text = "1000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="opp_points" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 152.0
+offset_right = 792.0
+offset_bottom = 280.0
+theme = ExtResource("8_jbdb8")
+text = "1000"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="card_manager" type="Node2D" parent="."]
 script = ExtResource("8_ssqxr")
@@ -90,6 +121,7 @@ position = Vector2(740.16, 523.16)
 script = ExtResource("11_ufn5a")
 
 [node name="deck" type="Node2D" parent="."]
+z_index = -2
 position = Vector2(60, 524)
 script = ExtResource("11_vvfaq")
 
@@ -103,3 +135,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="deck/Area2D"]
 shape = SubResource("RectangleShape2D_vcwo2")
+
+[node name="input_manager" type="Node2D" parent="."]
+script = ExtResource("13_yx2px")

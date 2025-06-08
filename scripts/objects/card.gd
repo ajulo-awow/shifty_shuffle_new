@@ -7,8 +7,6 @@ var hand_pos
 
 
 func _ready() -> void:
-	self.reparent($"..")
-	print(get_parent())
 	get_parent().connect_card_signals(self)
 
 	

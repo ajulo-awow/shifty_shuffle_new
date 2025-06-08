@@ -7,6 +7,9 @@ var player_hand_ref
 #
 const COLL_MASK_CARD = 1
 const COLL_MASK_CARD_SLOT = 2
+const DEFAULT_CARD_MOVE_SPEED = 0.1
+
+
 
 
 func _ready() -> void:
@@ -14,7 +17,9 @@ func _ready() -> void:
 	player_hand_ref = $"../player_hand"
 	#
 	screen_size = get_viewport_rect().size
-
+	#
+	$"../input_manager".connect("lmb_released", on_left_click_released)
+	
 	
 func _process(delta: float) -> void:
 	if card_being_dragged:
@@ -47,12 +52,10 @@ func finish_drag():
 		player_hand_ref.remove_card_from_hand(card_being_dragged)
 		card_being_dragged.position = card_slot_found.position
 		# disable card
-		#card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		#card_slot_found.card_in_slot = true
-		# card not bound to card slot
-		card_slot_found.card_in_slot = false
+		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+		card_slot_found.card_in_slot = true
 	else:
-		player_hand_ref.add_card_to_hand(card_being_dragged)
+		player_hand_ref.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 	#
 	card_being_dragged = null
 
@@ -62,6 +65,11 @@ func connect_card_signals(card):
 	card.connect("hovered_off", on_hovered_off_card)
 
 
+func on_left_click_released():
+	if card_being_dragged:
+		finish_drag()
+	
+
 func on_hovered_over_card(card):
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
@@ -69,13 +77,14 @@ func on_hovered_over_card(card):
 	
 	
 func on_hovered_off_card(card):
-	highlight_card(card, false)
-	#
-	var new_card_hovered = raycast_check_for_card()
-	if new_card_hovered:
-		highlight_card(new_card_hovered, true)
-	else:
-		is_hovering_on_card = false
+	if !card_being_dragged:
+		highlight_card(card, false)
+		#
+		var new_card_hovered = raycast_check_for_card()
+		if new_card_hovered:
+			highlight_card(new_card_hovered, true)
+		else:
+			is_hovering_on_card = false
 
 
 func highlight_card(card, hovered):
