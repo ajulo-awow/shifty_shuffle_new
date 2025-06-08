@@ -1,7 +1,9 @@
 extends Node2D
-
+#
 signal hovered
 signal hovered_off
+#
+var hand_pos
 
 
 func _ready() -> void:
