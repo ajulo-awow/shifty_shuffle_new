@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://6o4xbrhim4k4"
-path="res://.godot/imported/8bit_Sketchbook 2024-11-20.wav-de57db45924ed9ce93241416aaad7378.sample"
+path="res://.godot/imported/8bit_Sketchbook 2024-11-20.wav-53c318832a03b358179756ddd49657e1.sample"
 
 [deps]
 
-source_file="res://audio/8bit_Sketchbook 2024-11-20.wav"
-dest_files=["res://.godot/imported/8bit_Sketchbook 2024-11-20.wav-de57db45924ed9ce93241416aaad7378.sample"]
+source_file="res://style/audio/8bit_Sketchbook 2024-11-20.wav"
+dest_files=["res://.godot/imported/8bit_Sketchbook 2024-11-20.wav-53c318832a03b358179756ddd49657e1.sample"]
 
 [params]
 
