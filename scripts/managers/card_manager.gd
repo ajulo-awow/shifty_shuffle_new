@@ -15,15 +15,27 @@ func _process(delta: float) -> void:
 		card_being_dragged.position = Vector2(clamp(mouse_pos.x, 0, screen_size.x),
 		clamp(mouse_pos.y, 0, screen_size.y))
 
+
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			var card = raycast_check_for_card()
 			if card:
-				card_being_dragged = card
+				start_drag(card)
 		else:
-			card_being_dragged = null
+			if card_being_dragged:
+				finish_drag()
 
+
+func start_drag(card):
+	card.scale = Vector2(1, 1)
+	card_being_dragged = card
+	
+
+func finish_drag():
+	card_being_dragged.scale = Vector2(1.1, 1.1)
+	card_being_dragged = card_being_dragged
+	card_being_dragged = null
 
 func connect_card_signals(card):
 	card.connect("hovered", on_hovered_over_card)
