@@ -13,6 +13,7 @@ func _ready() -> void:
 
 		
 func add_card_to_hand(card, speed):
+	card.scale = Vector2(1, 1)
 	if card not in player_hand:
 		player_hand.insert(0, card)
 		update_hand_pos()

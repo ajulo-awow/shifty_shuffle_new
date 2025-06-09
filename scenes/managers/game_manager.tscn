@@ -88,7 +88,7 @@ offset_top = 320.0
 offset_right = 136.0
 offset_bottom = 448.0
 theme = ExtResource("8_jbdb8")
-text = "1000"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -99,7 +99,7 @@ offset_top = 152.0
 offset_right = 792.0
 offset_bottom = 280.0
 theme = ExtResource("8_jbdb8")
-text = "1000"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
