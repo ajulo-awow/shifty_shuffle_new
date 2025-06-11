@@ -22,44 +22,45 @@ func draw_card():
 	#
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
+	# 
+	#var number_card_value = card_database_ref.CARDS["number_card"][0]
+	# number display
+	new_card.get_node("number_number").text = str(card_database_ref.CARDS[card_drawn_name][0])
+	print(new_card.get_node("number_number").text)
+	new_card.get_node("special_number").text = str(card_database_ref.CARDS[card_drawn_name][1])
 	# weighted rng
-	var weighted_probs = []
 	var random = randf()
 	print(random)
-	# 50%
-	if random < 0.5:
-		print("is number card")
+	# likelihood of being instantiated into hand
+	# 60%, number card
+	if random < 0.6:
+		#print("is number card")
+		# number label visibility
 		new_card.get_node("number_number").visible = true
 		new_card.get_node("special_number").visible = false
+		# number value
+		#number_card_value = randi_range(1, 10)
+		# image texture
 		new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/number_card.png")
-	# 25%
+	# 15%, add card
 	elif random < 0.75:
-		print("is add card")
+		#print("is add card")
 		new_card.get_node("number_number").visible = false
 		new_card.get_node("special_number").visible = true
 		new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/add_card_special.png")
-	# 15%
+	# 15%, sub card
 	elif random < 0.9:
-		print("is sub card")
+		#print("is sub card")
 		new_card.get_node("number_number").visible = false
 		new_card.get_node("special_number").visible = true
 		new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/sub_card_special.png")
-	# 10%
+	# 10%, swap card
 	else:
-		print("is swap card")
+		#print("is swap card")
 		new_card.get_node("number_number").visible = false
 		new_card.get_node("special_number").visible = true
 		new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/swap_card_special.png")
-		
-	#print(card_drawn_name)
-	# numbers
-	new_card.get_node("number_number").text = str(card_database_ref.CARDS[card_drawn_name][0])
-	new_card.get_node("special_number").text = str(card_database_ref.CARDS[card_drawn_name][1])
-	# randomized number values
-	
-	## unique images
-	#var special_card_image_path = str("res://sprites/objects/player_cards/special_cards/" + card_drawn_name + "_special.png")
-	## display
+	# display
 	#if card_database_ref.CARDS[card_drawn_name] == card_database_ref.CARDS["number_card"]:
 		#new_card.get_node("number_number").visible = true
 		#new_card.get_node("special_number").visible = false
