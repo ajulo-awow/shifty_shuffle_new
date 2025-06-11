@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://388i0jgmhxec"]
+[gd_scene load_steps=6 format=3 uid="uid://388i0jgmhxec"]
 
-[ext_resource type="Texture2D" uid="uid://cuvuu3clt4vpo" path="res://sprites/objects/player_cards/add_card.png" id="1_sfgw3"]
+[ext_resource type="Texture2D" uid="uid://cuvuu3clt4vpo" path="res://sprites/objects/player_cards/special_cards/add_card_special.png" id="1_sfgw3"]
 [ext_resource type="Script" path="res://scripts/objects/card.gd" id="1_wg63d"]
+[ext_resource type="Theme" uid="uid://ssqqtgsljnes" path="res://style/themes/peanut_money.tres" id="3_fpw5j"]
+[ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="3_k535h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wg63d"]
 size = Vector2(96, 128)
@@ -10,14 +12,38 @@ size = Vector2(96, 128)
 position = Vector2(60, 524)
 script = ExtResource("1_wg63d")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="card_image" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("1_sfgw3")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_wg63d")
+
+[node name="number_number" type="Label" parent="."]
+offset_left = -44.0
+offset_top = -60.0
+offset_right = 44.0
+offset_bottom = 60.0
+theme = ExtResource("3_k535h")
+theme_override_colors/font_color = Color(0.462745, 0.266667, 0.372549, 1)
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="special_number" type="Label" parent="."]
+offset_left = -28.0
+offset_top = 32.0
+offset_right = 28.0
+offset_bottom = 60.0
+theme = ExtResource("3_fpw5j")
+theme_override_colors/font_color = Color(0.572549, 0.356863, 0.431373, 1)
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

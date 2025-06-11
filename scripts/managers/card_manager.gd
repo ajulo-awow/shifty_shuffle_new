@@ -21,7 +21,7 @@ func _ready() -> void:
 	$"../input_manager".connect("lmb_released", on_left_click_released)
 	
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if card_being_dragged:
 		var mouse_pos = get_global_mouse_position()
 		card_being_dragged.position = Vector2(clamp(mouse_pos.x, 0, screen_size.x),
@@ -71,12 +71,14 @@ func on_left_click_released():
 	
 
 func on_hovered_over_card(card):
+	print("hovered on")
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
 		highlight_card(card, true)
 	
 	
 func on_hovered_off_card(card):
+	print("hovered off")
 	if !card_being_dragged:
 		highlight_card(card, false)
 		#

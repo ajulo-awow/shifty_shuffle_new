@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dly2ovwprbrpb"]
+[gd_scene load_steps=17 format=3 uid="uid://dly2ovwprbrpb"]
 
 [ext_resource type="Texture2D" uid="uid://4bxvj8b4y1o3" path="res://sprites/UI/card_holder/new_cardholder.png" id="6_fagfu"]
 [ext_resource type="Texture2D" uid="uid://bngxuc60lvgsb" path="res://sprites/UI/point_holders/opp_points_holder.png" id="6_iccyr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/managers/card_manager.gd" id="8_ssqxr"]
 [ext_resource type="PackedScene" uid="uid://kfhp6xewmgma" path="res://scenes/objects/slot.tscn" id="10_s6d7f"]
 [ext_resource type="Texture2D" uid="uid://c20h2ngkiiuel" path="res://sprites/objects/player_cards/back_of_card.png" id="11_6gfjl"]
+[ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="11_jvgr5"]
 [ext_resource type="Script" path="res://scripts/managers/player_hand.gd" id="11_ufn5a"]
 [ext_resource type="Script" path="res://scripts/objects/deck.gd" id="11_vvfaq"]
 [ext_resource type="Script" path="res://scripts/managers/input_manager.gd" id="13_yx2px"]
@@ -33,55 +34,56 @@ mouse_filter = 2
 
 [node name="Blank400x300" type="TextureRect" parent="UI"]
 modulate = Color(0.992157, 0.901961, 0.933333, 1)
-z_index = -3
+z_index = -5
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("8_psj4q")
 
 [node name="NewCardholder" type="TextureRect" parent="UI"]
-z_index = -3
+z_index = -5
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("6_fagfu")
 
 [node name="NewOppCardHolder" type="TextureRect" parent="UI"]
-z_index = -3
+z_index = -5
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("7_psj4q")
 
 [node name="OppPointsHolder" type="TextureRect" parent="UI"]
-z_index = -3
+z_index = -5
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("6_iccyr")
 
 [node name="PointsHolder" type="TextureRect" parent="UI"]
-z_index = -3
+z_index = -5
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("7_niwpp")
 
 [node name="NewCardSlots" type="TextureRect" parent="UI"]
-z_index = -3
+z_index = -5
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("6_psj4q")
 
 [node name="NewOppCardSlot" type="TextureRect" parent="UI"]
-z_index = -3
+z_index = -5
 layout_mode = 0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("7_ssqxr")
 
 [node name="player_points" type="Label" parent="UI"]
+z_index = -5
 layout_mode = 0
 offset_left = 8.0
 offset_top = 320.0
@@ -93,6 +95,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="opp_points" type="Label" parent="UI"]
+z_index = -5
 layout_mode = 0
 offset_left = 664.0
 offset_top = 152.0
@@ -109,13 +112,52 @@ script = ExtResource("8_ssqxr")
 [node name="player_card_slots" type="Node2D" parent="."]
 
 [node name="slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+z_index = -4
 position = Vector2(516.26, 523.705)
 
+[node name="Label" type="Label" parent="player_card_slots/slot"]
+offset_left = -52.0
+offset_top = -68.0
+offset_right = 52.0
+offset_bottom = 68.0
+theme = ExtResource("11_jvgr5")
+theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
+theme_override_font_sizes/font_size = 128
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="slot2" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+z_index = -4
 position = Vector2(627.56, 524)
 
+[node name="Label" type="Label" parent="player_card_slots/slot2"]
+offset_left = -52.0
+offset_top = -68.0
+offset_right = 52.0
+offset_bottom = 68.0
+theme = ExtResource("11_jvgr5")
+theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
+theme_override_font_sizes/font_size = 128
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="slot3" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+z_index = -4
 position = Vector2(740.16, 523.16)
+
+[node name="Label" type="Label" parent="player_card_slots/slot3"]
+offset_left = -52.0
+offset_top = -68.0
+offset_right = 52.0
+offset_bottom = 68.0
+theme = ExtResource("11_jvgr5")
+theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
+theme_override_font_sizes/font_size = 128
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="player_hand" type="Node2D" parent="."]
 script = ExtResource("11_ufn5a")

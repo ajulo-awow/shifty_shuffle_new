@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx3k0rab2gsut"
-path="res://.godot/imported/subtract_card.png-323b859905127bc32a450a5f636a0714.ctex"
+uid="uid://cuvuu3clt4vpo"
+path="res://.godot/imported/add_card_special.png-fc616163cbbc21077baaf664b5f85352.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/objects/player_cards/subtract_card.png"
-dest_files=["res://.godot/imported/subtract_card.png-323b859905127bc32a450a5f636a0714.ctex"]
+source_file="res://sprites/objects/player_cards/special_cards/add_card_special.png"
+dest_files=["res://.godot/imported/add_card_special.png-fc616163cbbc21077baaf664b5f85352.ctex"]
 
 [params]
 
