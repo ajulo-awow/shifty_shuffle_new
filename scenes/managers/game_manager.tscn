@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dly2ovwprbrpb"]
+[gd_scene load_steps=23 format=3 uid="uid://dly2ovwprbrpb"]
 
 [ext_resource type="Texture2D" uid="uid://4bxvj8b4y1o3" path="res://sprites/UI/card_holder/new_cardholder.png" id="6_fagfu"]
 [ext_resource type="Texture2D" uid="uid://bngxuc60lvgsb" path="res://sprites/UI/point_holders/opp_points_holder.png" id="6_iccyr"]
@@ -14,8 +14,13 @@
 [ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="11_jvgr5"]
 [ext_resource type="Script" path="res://scripts/managers/player_hand.gd" id="11_ufn5a"]
 [ext_resource type="Script" path="res://scripts/objects/deck.gd" id="11_vvfaq"]
+[ext_resource type="Script" path="res://scripts/objects/number_card_slot.gd" id="12_ax18m"]
+[ext_resource type="PackedScene" uid="uid://bcbqrtkrite7m" path="res://scenes/objects/opp_slot.tscn" id="13_qg3pd"]
 [ext_resource type="Script" path="res://scripts/managers/input_manager.gd" id="13_yx2px"]
+[ext_resource type="Script" path="res://scripts/managers/opp_hand.gd" id="14_soyo2"]
 [ext_resource type="Texture2D" uid="uid://dpbwaatlnh02b" path="res://sprites/objects/opp_cards/opp_back_of_card.png" id="15_tdaay"]
+[ext_resource type="Script" path="res://scripts/objects/opp_deck.gd" id="17_s3uhn"]
+[ext_resource type="Script" path="res://scripts/managers/turn_manager.gd" id="18_bguuv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcwo2"]
 size = Vector2(96, 128)
@@ -108,7 +113,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="end_turn" type="Button" parent="UI"]
-z_index = -5
+z_index = -4
 layout_mode = 0
 offset_left = 272.0
 offset_top = 328.0
@@ -117,7 +122,7 @@ offset_bottom = 400.0
 focus_mode = 0
 theme = ExtResource("11_jvgr5")
 theme_override_colors/font_hover_color = Color(0.682353, 0.447059, 0.831373, 1)
-theme_override_colors/font_pressed_color = Color(0.682353, 0.447059, 0.831373, 1)
+theme_override_colors/font_pressed_color = Color(0.913725, 0.74902, 0.890196, 1)
 theme_override_colors/font_color = Color(0.92549, 0.627451, 0.243137, 1)
 text = "END TURN"
 flat = true
@@ -136,33 +141,73 @@ script = ExtResource("8_ssqxr")
 
 [node name="player_card_slots" type="Node2D" parent="."]
 
-[node name="slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+[node name="special_slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+z_index = -4
 position = Vector2(516.26, 523.705)
 
-[node name="slot2" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+[node name="Label" type="Label" parent="player_card_slots/special_slot"]
+offset_left = -52.0
+offset_top = -68.0
+offset_right = 52.0
+offset_bottom = 68.0
+theme = ExtResource("11_jvgr5")
+theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="number_slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
 z_index = -4
 position = Vector2(627.56, 524)
+script = ExtResource("12_ax18m")
 
-[node name="slot3" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+[node name="Label" type="Label" parent="player_card_slots/number_slot"]
+offset_left = -52.0
+offset_top = -68.0
+offset_right = 52.0
+offset_bottom = 68.0
+theme = ExtResource("11_jvgr5")
+theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="number_slot2" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
 z_index = -4
 position = Vector2(740.16, 523.16)
+script = ExtResource("12_ax18m")
 
-[node name="opp_card_slots2" type="Node2D" parent="."]
+[node name="Label" type="Label" parent="player_card_slots/number_slot2"]
+offset_left = -52.0
+offset_top = -67.0
+offset_right = 52.0
+offset_bottom = 69.0
+theme = ExtResource("11_jvgr5")
+theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
+text = "N"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="slot" parent="opp_card_slots2" instance=ExtResource("10_s6d7f")]
-z_index = -4
-position = Vector2(60, 75.9)
+[node name="opp_card_slots" type="Node2D" parent="."]
 
-[node name="slot2" parent="opp_card_slots2" instance=ExtResource("10_s6d7f")]
-z_index = -4
-position = Vector2(172.2, 75.9)
+[node name="opp_slot" parent="opp_card_slots" instance=ExtResource("13_qg3pd")]
+position = Vector2(60, 76)
+script = null
 
-[node name="slot3" parent="opp_card_slots2" instance=ExtResource("10_s6d7f")]
-z_index = -4
-position = Vector2(283.9, 75.9)
+[node name="opp_slot2" parent="opp_card_slots" instance=ExtResource("13_qg3pd")]
+position = Vector2(172, 76)
+script = null
+
+[node name="opp_slot3" parent="opp_card_slots" instance=ExtResource("13_qg3pd")]
+position = Vector2(284.7, 76)
+script = null
 
 [node name="player_hand" type="Node2D" parent="."]
 script = ExtResource("11_ufn5a")
+
+[node name="opp_hand" type="Node2D" parent="."]
+position = Vector2(432, 76)
+script = ExtResource("14_soyo2")
 
 [node name="player_deck" type="Node2D" parent="."]
 z_index = -2
@@ -183,6 +228,7 @@ shape = SubResource("RectangleShape2D_vcwo2")
 [node name="opp_deck" type="Node2D" parent="."]
 z_index = -2
 position = Vector2(740, 76)
+script = ExtResource("17_s3uhn")
 
 [node name="Sprite2D" type="Sprite2D" parent="opp_deck"]
 scale = Vector2(2, 2)
@@ -190,3 +236,10 @@ texture = ExtResource("15_tdaay")
 
 [node name="input_manager" type="Node2D" parent="."]
 script = ExtResource("13_yx2px")
+
+[node name="turn_manager" type="Node" parent="."]
+script = ExtResource("18_bguuv")
+
+[node name="turn_timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="UI/end_turn" to="turn_manager" method="_on_end_turn_pressed"]

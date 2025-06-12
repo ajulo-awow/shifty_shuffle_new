@@ -4,6 +4,7 @@ var card_being_dragged
 var screen_size
 var is_hovering_on_card
 var player_hand_ref
+var played_special_card_this_turn: bool = false
 #
 const COLL_MASK_CARD = 1
 const COLL_MASK_CARD_SLOT = 2
@@ -46,17 +47,29 @@ func start_drag(card):
 
 func finish_drag():
 	card_being_dragged.scale = Vector2(1.1, 1.1)
-	# if card dropped in empty card slot
-	var card_slot_found = raycast_check_for_card_slot()
-	if card_slot_found and not card_slot_found.card_in_slot:
-		player_hand_ref.remove_card_from_hand(card_being_dragged)
-		card_being_dragged.position = card_slot_found.position
-		# disable card
-		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		card_slot_found.card_in_slot = true
-	else:
-		player_hand_ref.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 	#
+	var card_slot_found = raycast_check_for_card_slot()
+	#
+	if card_slot_found and not card_slot_found.card_in_slot:
+		#
+		if card_being_dragged.card_type == card_slot_found.card_slot_type:
+			#
+			if !played_special_card_this_turn:
+				player_hand_ref.remove_card_from_hand(card_being_dragged)
+				#
+				card_being_dragged.z_index = -1
+				card_being_dragged.scale = Vector2(1, 1)
+				card_being_dragged.position = card_slot_found.position
+				is_hovering_on_card = false
+				#
+				card_being_dragged.card_slot_card_in = card_slot_found
+				# disable card
+				card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+				#
+				card_slot_found.card_in_slot = true
+				card_being_dragged = null
+				return
+	player_hand_ref.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 	card_being_dragged = null
 
 
@@ -71,15 +84,13 @@ func on_left_click_released():
 	
 
 func on_hovered_over_card(card):
-	print("hovered on")
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
 		highlight_card(card, true)
 	
 	
 func on_hovered_off_card(card):
-	print("hovered off")
-	if !card_being_dragged:
+	if !card.card_slot_card_in and !card_being_dragged:
 		highlight_card(card, false)
 		#
 		var new_card_hovered = raycast_check_for_card()
@@ -137,7 +148,8 @@ func get_card_with_highest_z_index(cards):
 	return highest_z_card
 	
 	
-
+func reset_played_special_card():
+	played_special_card_this_turn = false
 	
 	
 	

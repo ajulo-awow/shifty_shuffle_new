@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="shifty_shuffle_new"
-run/main_scene="res://scenes/managers/game_manager.tscn"
+run/main_scene="res://scenes/menus/start_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://sprites/placeholder/icon.svg"
 
@@ -24,6 +24,7 @@ GlobalManager="*res://scenes/globals/global_manager.tscn"
 window/size/viewport_width=800
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
