@@ -1,0 +1,46 @@
+extends Node2D
+# consts
+const CARD_WIDTH = 60
+const HAND_POS_X = 432
+const HAND_POS_Y = 76
+const DEFAULT_CARD_MOVE_SPEED = 0.1
+# 
+var opp_hand = []
+
+
+func _ready() -> void:
+	pass
+
+		
+func add_card_to_hand(card, speed):
+	card.scale = Vector2(1, 1)
+	if card not in opp_hand:
+		opp_hand.insert(0, card)
+		update_hand_pos()
+	else:
+		animate_card_to_pos(card, card.hand_pos, DEFAULT_CARD_MOVE_SPEED)
+
+
+func update_hand_pos():
+	for i in range(opp_hand.size()):
+		var new_pos = Vector2(calculate_card_pos(i), HAND_POS_Y)
+		var card = opp_hand[i]
+		card.hand_pos = new_pos
+		animate_card_to_pos(card, new_pos, DEFAULT_CARD_MOVE_SPEED)
+		
+
+func calculate_card_pos(index):
+	var x_offset = (opp_hand.size() - 1) + CARD_WIDTH
+	var x_pos = HAND_POS_X + index * CARD_WIDTH - x_offset / 2
+	return x_pos
+
+
+func animate_card_to_pos(card, new_pos, speed):
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "position", new_pos, speed)
+
+
+func remove_card_from_hand(card):
+	if card in opp_hand:
+		opp_hand.erase(card)
+		update_hand_pos()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcbqrtkrite7m"]
+
+[ext_resource type="Script" path="res://scripts/objects/special_card_slot.gd" id="1_cuvtg"]
+
+[node name="opp_slot" type="Node2D"]
+script = ExtResource("1_cuvtg")

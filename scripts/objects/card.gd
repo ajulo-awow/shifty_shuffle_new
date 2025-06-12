@@ -4,6 +4,8 @@ signal hovered
 signal hovered_off
 #
 var hand_pos
+var card_slot_card_in
+var card_type
 
 
 func _ready() -> void:

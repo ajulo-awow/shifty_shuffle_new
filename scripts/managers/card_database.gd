@@ -1,6 +1,9 @@
-var CARDS = {# number_number, special_number
-	"number_card" : [randi_range(1,10), randi_range(1,100)],
-	"add_card" : [randi_range(1,10), randi_range(1,100)],
-	"sub_card" : [randi_range(1,10), randi_range(1,100)],
-	"swap_card" : [randi_range(1,10), randi_range(1,100)]
+
+
+
+var CARDS = {# number_number, special_number, card type
+	"number_card" : [randi_range(1,10), randi_range(1,100), "type_number"],
+	"add_card" : [randi_range(1,10), randi_range(1,100), "type_special"],
+	"sub_card" : [randi_range(1,10), randi_range(1,100), "type_special"],
+	#"swap_card" : [randi_range(1,10), randi_range(1,100), "type_special"]
 }

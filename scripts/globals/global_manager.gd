@@ -3,7 +3,7 @@ extends Node
 
 
 func _ready() -> void:
-	pass
+	Engine.max_fps = 60
 
 
 func _process(_delta: float) -> void:
