@@ -12,8 +12,12 @@ config_version=5
 
 config/name="shifty_shuffle_new"
 run/main_scene="res://scenes/menus/start_menu.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://sprites/placeholder/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
 
 [autoload]
 
@@ -23,7 +27,8 @@ GlobalManager="*res://scenes/globals/global_manager.tscn"
 
 window/size/viewport_width=800
 window/size/viewport_height=600
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 window/vsync/vsync_mode=0
 
 [dotnet]
