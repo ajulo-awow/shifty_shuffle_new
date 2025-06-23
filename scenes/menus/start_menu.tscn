@@ -1,8 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciibuqknng8sb"]
+[gd_scene load_steps=12 format=3 uid="uid://ciibuqknng8sb"]
 
 [ext_resource type="Texture2D" uid="uid://di001w8mn8h7s" path="res://sprites/placeholder/blank_400x300.png" id="1_1v4fu"]
-[ext_resource type="Script" path="res://scripts/menus/start_menu.gd" id="1_p8kvt"]
-[ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="2_5uj24"]
+[ext_resource type="Script" uid="uid://dqlyeiup3fsv4" path="res://scripts/menus/start_menu.gd" id="1_p8kvt"]
+[ext_resource type="Texture2D" uid="uid://dm8c5fno8uq2i" path="res://sprites/UI/menus/scrolling_background.png" id="3_yvfo8"]
+[ext_resource type="Texture2D" uid="uid://bk6o4heu4k753" path="res://sprites/UI/menus/shifty_title.png" id="4_k4f6f"]
+[ext_resource type="Texture2D" uid="uid://dea08xwf87wf3" path="res://sprites/UI/menus/shuffle_title.png" id="5_6ghfn"]
+[ext_resource type="Texture2D" uid="uid://b3c4trky6nbq7" path="res://sprites/UI/menus/start_title.png" id="6_d64hf"]
+[ext_resource type="Animation" uid="uid://b5wksnw1pipuj" path="res://animation/start_menu_title_anim.res" id="6_hk0a1"]
+[ext_resource type="Texture2D" uid="uid://dycgwokwmsyy7" path="res://sprites/UI/menus/settings_title.png" id="7_qqdkx"]
+[ext_resource type="Texture2D" uid="uid://c7vtcs7ii3wxu" path="res://sprites/UI/menus/credits_title.png" id="8_yo8nw"]
+
+[sub_resource type="Animation" id="Animation_mhaau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShiftyTitle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(272, 144)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShuffleTitle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(432, 296)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("start:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pxa1q"]
+_data = {
+&"RESET": SubResource("Animation_mhaau"),
+&"start_menu_title_anim": ExtResource("6_hk0a1")
+}
 
 [node name="start_menu" type="Control"]
 layout_mode = 3
@@ -13,80 +64,89 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p8kvt")
 
-[node name="Blank400x300" type="TextureRect" parent="."]
-modulate = Color(0.533333, 0.631373, 0.843137, 1)
+[node name="background" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Blank400x300" type="TextureRect" parent="background"]
+modulate = Color(0.764706, 0.8, 0.921569, 1)
 z_index = -5
-layout_mode = 0
+offset_right = 400.0
+offset_bottom = 300.0
 scale = Vector2(2, 2)
 mouse_filter = 2
 texture = ExtResource("1_1v4fu")
 
-[node name="shifty" type="Label" parent="."]
-layout_mode = 0
-offset_left = 136.0
-offset_top = 64.0
-offset_right = 432.0
-offset_bottom = 192.0
-theme = ExtResource("2_5uj24")
-theme_override_colors/font_color = Color(0.933333, 0.054902, 0.392157, 1)
-theme_override_font_sizes/font_size = 128
-text = "Shifty"
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -1
 
-[node name="shuffle" type="Label" parent="."]
-layout_mode = 0
-offset_left = 336.0
-offset_top = 160.0
-offset_right = 696.0
-offset_bottom = 288.0
-theme = ExtResource("2_5uj24")
-theme_override_colors/font_color = Color(0.933333, 0.054902, 0.392157, 1)
-theme_override_font_sizes/font_size = 128
-text = "Shuffle"
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(2, 2)
+motion_mirroring = Vector2(512, 512)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ScrollingBackground" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_yvfo8")
+centered = false
+
+[node name="ShiftyTitle" type="Sprite2D" parent="."]
+position = Vector2(272, 144)
+scale = Vector2(2, 2)
+texture = ExtResource("4_k4f6f")
+
+[node name="ShuffleTitle" type="Sprite2D" parent="."]
+position = Vector2(432, 296)
+scale = Vector2(2, 2)
+texture = ExtResource("5_6ghfn")
+
+[node name="start" type="TextureButton" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -268.0
-offset_top = 76.0
-offset_right = 269.0
-offset_bottom = 280.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -192.0
+offset_right = 57.0
+offset_bottom = -150.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 15
-
-[node name="start" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
 focus_mode = 0
-theme = ExtResource("2_5uj24")
-text = "START"
-flat = true
+texture_normal = ExtResource("6_d64hf")
+stretch_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="settings" type="TextureButton" parent="."]
 layout_mode = 2
-theme = ExtResource("2_5uj24")
-theme_override_constants/separation = 125
-alignment = 1
-
-[node name="settings" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
+offset_left = 74.0
+offset_top = 488.0
+offset_right = 246.0
+offset_bottom = 539.0
+scale = Vector2(1.5, 1.5)
 focus_mode = 0
-theme = ExtResource("2_5uj24")
-text = "Settings"
-flat = true
+texture_normal = ExtResource("7_qqdkx")
 
-[node name="credits" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="credits" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 553.0
+offset_top = 488.0
+offset_right = 709.0
+offset_bottom = 539.0
+scale = Vector2(1.5, 1.5)
 focus_mode = 0
-theme = ExtResource("2_5uj24")
-text = "Credits"
-flat = true
+texture_normal = ExtResource("8_yo8nw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pxa1q")
+}
 
-[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="start" to="." method="_on_start_mouse_entered"]
+[connection signal="mouse_exited" from="start" to="." method="_on_start_mouse_exited"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="mouse_exited" from="settings" to="." method="_on_settings_mouse_exited"]
+[connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="credits" to="." method="_on_credits_mouse_entered"]
+[connection signal="mouse_exited" from="credits" to="." method="_on_credits_mouse_exited"]
+[connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]
