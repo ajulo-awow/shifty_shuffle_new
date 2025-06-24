@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://clkflhnqs50qf"]
+[gd_scene load_steps=5 format=3 uid="uid://clkflhnqs50qf"]
 
-[ext_resource type="Script" path="res://scripts/menus/credits_menu.gd" id="1_83t2c"]
+[ext_resource type="Script" uid="uid://25jy0y8ytc1f" path="res://scripts/menus/credits_menu.gd" id="1_83t2c"]
 [ext_resource type="Texture2D" uid="uid://di001w8mn8h7s" path="res://sprites/placeholder/blank_400x300.png" id="1_nk712"]
 [ext_resource type="Theme" uid="uid://ssqqtgsljnes" path="res://style/themes/peanut_money.tres" id="3_cc4ja"]
+[ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="4_tk1a6"]
 
 [node name="credits_menu" type="Control"]
 layout_mode = 3
@@ -23,27 +24,115 @@ texture = ExtResource("1_nk712")
 
 [node name="back_arrow" type="Button" parent="."]
 layout_mode = 0
-offset_left = 24.0
 offset_top = 472.0
-offset_right = 156.0
+offset_right = 132.0
 offset_bottom = 536.0
 scale = Vector2(2, 2)
 focus_mode = 0
 theme = ExtResource("3_cc4ja")
-theme_override_colors/font_hover_color = Color(0.682353, 0.447059, 0.831373, 1)
-theme_override_colors/font_pressed_color = Color(0.913725, 0.74902, 0.890196, 1)
-theme_override_colors/font_color = Color(0.92549, 0.627451, 0.243137, 1)
-text = "<-----"
+theme_override_colors/font_hover_color = Color(0.92549, 0.627451, 0.243137, 1)
+theme_override_colors/font_color = Color(0.984314, 0.74902, 0.176471, 1)
+theme_override_colors/font_pressed_color = Color(0.92549, 0.627451, 0.243137, 1)
+text = "<----"
 flat = true
 
-[node name="Label" type="Label" parent="back_arrow"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 8.0
-offset_right = 128.0
-offset_bottom = 64.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_top = 64.0
+offset_right = 148.0
+offset_bottom = 489.0
+grow_horizontal = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="created_by" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_tk1a6")
+theme_override_colors/font_color = Color(0.933333, 0.054902, 0.392157, 1)
+text = "Created by:"
+horizontal_alignment = 1
+
+[node name="0600dev" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="itch_page" type="LinkButton" parent="VBoxContainer/0600dev"]
+layout_mode = 2
 theme = ExtResource("3_cc4ja")
-theme_override_colors/font_color = Color(0.984314, 0.74902, 0.176471, 1)
-text = "<-----"
+theme_override_colors/font_color = Color(0.992157, 0.901961, 0.933333, 1)
+theme_override_colors/font_pressed_color = Color(0.764706, 0.8, 0.921569, 1)
+theme_override_colors/font_hover_color = Color(0.764706, 0.8, 0.921569, 1)
+text = "0600dev"
+underline = 1
+uri = "https://0600.itch.io/"
+
+[node name="fonts_by" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_tk1a6")
+theme_override_colors/font_color = Color(1, 0.243137, 0.545098, 1)
+theme_override_font_sizes/font_size = 48
+text = "Fonts by:"
+horizontal_alignment = 1
+
+[node name="Font End Dev" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="fonts_creator" type="LinkButton" parent="VBoxContainer/Font End Dev"]
+layout_mode = 2
+theme = ExtResource("3_cc4ja")
+theme_override_colors/font_color = Color(0.992157, 0.901961, 0.933333, 1)
+theme_override_colors/font_pressed_color = Color(0.764706, 0.8, 0.921569, 1)
+theme_override_colors/font_hover_color = Color(0.764706, 0.8, 0.921569, 1)
+theme_override_font_sizes/font_size = 48
+text = "Font End Dev"
+underline = 1
+uri = "https://fontenddev.com/about/"
+
+[node name="music_by" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_tk1a6")
+theme_override_colors/font_color = Color(1, 0.243137, 0.545098, 1)
+theme_override_font_sizes/font_size = 48
+text = "Music by:"
+horizontal_alignment = 1
+
+[node name="Tallbeard Studios" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="music_creator" type="LinkButton" parent="VBoxContainer/Tallbeard Studios"]
+layout_mode = 2
+theme = ExtResource("3_cc4ja")
+theme_override_colors/font_color = Color(0.992157, 0.901961, 0.933333, 1)
+theme_override_colors/font_pressed_color = Color(0.764706, 0.8, 0.921569, 1)
+theme_override_colors/font_hover_color = Color(0.764706, 0.8, 0.921569, 1)
+theme_override_font_sizes/font_size = 48
+text = "Tallbeard Studios"
+underline = 1
+uri = "https://tallbeard.itch.io/music-loop-bundle"
+
+[node name="sfx_by" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_tk1a6")
+theme_override_colors/font_color = Color(1, 0.243137, 0.545098, 1)
+theme_override_font_sizes/font_size = 48
+text = "SFX by:"
+horizontal_alignment = 1
+
+[node name="Cyrex Studios" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton" type="LinkButton" parent="VBoxContainer/Cyrex Studios"]
+layout_mode = 2
+theme = ExtResource("3_cc4ja")
+theme_override_colors/font_color = Color(0.992157, 0.901961, 0.933333, 1)
+theme_override_colors/font_pressed_color = Color(0.764706, 0.8, 0.921569, 1)
+theme_override_colors/font_hover_color = Color(0.764706, 0.8, 0.921569, 1)
+theme_override_font_sizes/font_size = 48
+text = "Cyrex Studios"
+underline = 1
+uri = "https://cyrex-studios.itch.io/universal-ui-soundpack"
 
 [connection signal="pressed" from="back_arrow" to="." method="_on_back_arrow_pressed"]

@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://buedhmlqiurj0"]
+[gd_scene load_steps=9 format=3 uid="uid://buedhmlqiurj0"]
 
 [ext_resource type="Texture2D" uid="uid://di001w8mn8h7s" path="res://sprites/placeholder/blank_400x300.png" id="1_1e6c6"]
-[ext_resource type="Script" path="res://scripts/menus/settings_menu.gd" id="1_mdqqb"]
+[ext_resource type="Script" uid="uid://bgf8mk42fc5n2" path="res://scripts/menus/settings_menu.gd" id="1_mdqqb"]
 [ext_resource type="Theme" uid="uid://ssqqtgsljnes" path="res://style/themes/peanut_money.tres" id="3_u6uqd"]
+[ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="4_aqh58"]
+[ext_resource type="Theme" uid="uid://daiovfp2lf5jx" path="res://style/themes/UI.tres" id="5_1ik56"]
+[ext_resource type="FontFile" uid="uid://m77yg6odk0x" path="res://style/fonts/PeanutMoney.ttf" id="6_4xqra"]
+[ext_resource type="Texture2D" uid="uid://dtgk4rpw5rswm" path="res://sprites/UI/progress_bar/background_fill_bar.png" id="7_qnuys"]
+[ext_resource type="Texture2D" uid="uid://cbcyos3bxrbgf" path="res://sprites/UI/progress_bar/fill_bar.png" id="8_eoonq"]
 
 [node name="settings_menu" type="Control"]
 layout_mode = 3
@@ -23,26 +28,122 @@ texture = ExtResource("1_1e6c6")
 
 [node name="back_arrow" type="Button" parent="."]
 layout_mode = 0
-offset_left = 24.0
+offset_left = 536.0
 offset_top = 472.0
-offset_right = 156.0
+offset_right = 668.0
 offset_bottom = 536.0
 scale = Vector2(2, 2)
 focus_mode = 0
 theme = ExtResource("3_u6uqd")
-theme_override_colors/font_hover_color = Color(0.682353, 0.447059, 0.831373, 1)
-theme_override_colors/font_pressed_color = Color(0.913725, 0.74902, 0.890196, 1)
-theme_override_colors/font_color = Color(0.92549, 0.627451, 0.243137, 1)
-text = "<-----"
+theme_override_colors/font_hover_color = Color(0.92549, 0.627451, 0.243137, 1)
+theme_override_colors/font_color = Color(0.984314, 0.74902, 0.176471, 1)
+theme_override_colors/font_pressed_color = Color(0.92549, 0.627451, 0.243137, 1)
+text = "---->"
 flat = true
 
-[node name="Label" type="Label" parent="back_arrow"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 8.0
-offset_right = 128.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(0.984314, 0.74902, 0.176471, 1)
-text = "<-----"
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 129.0
+offset_top = 68.0
+offset_right = 671.0
+offset_bottom = 330.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 150
+
+[node name="volume" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="volume" type="Label" parent="HBoxContainer/volume"]
+layout_mode = 2
+theme = ExtResource("4_aqh58")
+theme_override_colors/font_color = Color(0.933333, 0.054902, 0.392157, 1)
+text = "Volume"
+
+[node name="master" type="Label" parent="HBoxContainer/volume"]
+layout_mode = 2
+theme = ExtResource("3_u6uqd")
+theme_override_colors/font_color = Color(1, 0.243137, 0.545098, 1)
+text = "Master"
+
+[node name="master_check_box" type="CheckBox" parent="HBoxContainer/volume/master"]
+layout_mode = 2
+offset_left = 152.0
+offset_top = 12.0
+offset_right = 192.0
+offset_bottom = 52.0
+focus_mode = 0
+theme = ExtResource("5_1ik56")
+theme_override_fonts/font = ExtResource("6_4xqra")
+theme_override_font_sizes/font_size = 32
+alignment = 1
+
+[node name="music" type="Label" parent="HBoxContainer/volume"]
+layout_mode = 2
+theme = ExtResource("3_u6uqd")
+theme_override_colors/font_color = Color(1, 0.243137, 0.545098, 1)
+text = "Music"
+
+[node name="music_check_box" type="CheckBox" parent="HBoxContainer/volume/music"]
+layout_mode = 2
+offset_left = 152.0
+offset_top = 12.0
+offset_right = 192.0
+offset_bottom = 52.0
+focus_mode = 0
+theme = ExtResource("5_1ik56")
+theme_override_fonts/font = ExtResource("6_4xqra")
+theme_override_font_sizes/font_size = 32
+alignment = 1
+
+[node name="sfx" type="Label" parent="HBoxContainer/volume"]
+layout_mode = 2
+theme = ExtResource("3_u6uqd")
+theme_override_colors/font_color = Color(1, 0.243137, 0.545098, 1)
+text = "SFX"
+
+[node name="sfx_check_box" type="CheckBox" parent="HBoxContainer/volume/sfx"]
+layout_mode = 2
+offset_left = 152.0
+offset_top = 12.0
+offset_right = 192.0
+offset_bottom = 52.0
+focus_mode = 0
+theme = ExtResource("5_1ik56")
+theme_override_fonts/font = ExtResource("6_4xqra")
+theme_override_font_sizes/font_size = 32
+alignment = 1
+
+[node name="controls" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="controls" type="Label" parent="HBoxContainer/controls"]
+layout_mode = 2
+theme = ExtResource("4_aqh58")
+theme_override_colors/font_color = Color(0.933333, 0.054902, 0.392157, 1)
+text = "Controls"
+
+[node name="sensitivity" type="Label" parent="HBoxContainer/controls"]
+layout_mode = 2
+theme = ExtResource("3_u6uqd")
+theme_override_colors/font_color = Color(1, 0.243137, 0.545098, 1)
+theme_override_font_sizes/font_size = 48
+text = "Mouse
+Sensitivity"
+horizontal_alignment = 1
+
+[node name="mouse_sensitivity_bar" type="TextureProgressBar" parent="HBoxContainer/controls/sensitivity"]
+layout_mode = 2
+offset_top = 100.0
+offset_right = 216.0
+offset_bottom = 124.0
+step = 5.0
+texture_under = ExtResource("7_qnuys")
+texture_progress = ExtResource("8_eoonq")
 
 [connection signal="pressed" from="back_arrow" to="." method="_on_back_arrow_pressed"]
+[connection signal="toggled" from="HBoxContainer/volume/master/master_check_box" to="." method="_on_master_check_box_toggled"]
+[connection signal="toggled" from="HBoxContainer/volume/music/music_check_box" to="." method="_on_music_check_box_toggled"]
+[connection signal="toggled" from="HBoxContainer/volume/sfx/sfx_check_box" to="." method="_on_sfx_check_box_toggled"]
+[connection signal="value_changed" from="HBoxContainer/controls/sensitivity/mouse_sensitivity_bar" to="." method="_on_mouse_sensitivity_bar_value_changed"]

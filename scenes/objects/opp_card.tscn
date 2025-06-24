@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://46yctjr6xswa"]
 
-[ext_resource type="Script" path="res://scripts/objects/opp_card.gd" id="1_hw8ny"]
+[ext_resource type="Script" uid="uid://1q4j540eu4h3" path="res://scripts/objects/opp_card.gd" id="1_hw8ny"]
 [ext_resource type="Texture2D" uid="uid://dpbwaatlnh02b" path="res://sprites/objects/opp_cards/opp_back_of_card.png" id="2_612th"]
 [ext_resource type="Texture2D" uid="uid://dfaldy4jy82cq" path="res://sprites/objects/opp_cards/opp_number_card.png" id="3_imfn5"]
 [ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="3_yveds"]
@@ -108,8 +108,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3pjx"]
 _data = {
-"RESET": SubResource("Animation_20j40"),
-"card_flip": ExtResource("6_ail87")
+&"RESET": SubResource("Animation_20j40"),
+&"card_flip": ExtResource("6_ail87")
 }
 
 [node name="opp_card" type="Node2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dly2ovwprbrpb"]
+[gd_scene load_steps=24 format=3 uid="uid://dly2ovwprbrpb"]
 
 [ext_resource type="Texture2D" uid="uid://4bxvj8b4y1o3" path="res://sprites/UI/card_holder/new_cardholder.png" id="6_fagfu"]
 [ext_resource type="Texture2D" uid="uid://bngxuc60lvgsb" path="res://sprites/UI/point_holders/opp_points_holder.png" id="6_iccyr"]
@@ -8,19 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://blm6b626agf7q" path="res://sprites/UI/slots/new_opp_card_slot.png" id="7_ssqxr"]
 [ext_resource type="Theme" uid="uid://ssqqtgsljnes" path="res://style/themes/peanut_money.tres" id="8_jbdb8"]
 [ext_resource type="Texture2D" uid="uid://di001w8mn8h7s" path="res://sprites/placeholder/blank_400x300.png" id="8_psj4q"]
-[ext_resource type="Script" path="res://scripts/managers/card_manager.gd" id="8_ssqxr"]
+[ext_resource type="Script" uid="uid://b74wt8sd56faa" path="res://scripts/managers/card_manager.gd" id="8_ssqxr"]
 [ext_resource type="PackedScene" uid="uid://kfhp6xewmgma" path="res://scenes/objects/slot.tscn" id="10_s6d7f"]
 [ext_resource type="Texture2D" uid="uid://c20h2ngkiiuel" path="res://sprites/objects/player_cards/back_of_card.png" id="11_6gfjl"]
 [ext_resource type="Theme" uid="uid://wivmpogs2dn6" path="res://style/themes/grape_soda.tres" id="11_jvgr5"]
-[ext_resource type="Script" path="res://scripts/managers/player_hand.gd" id="11_ufn5a"]
-[ext_resource type="Script" path="res://scripts/objects/deck.gd" id="11_vvfaq"]
-[ext_resource type="Script" path="res://scripts/objects/number_card_slot.gd" id="12_ax18m"]
-[ext_resource type="PackedScene" uid="uid://bcbqrtkrite7m" path="res://scenes/objects/opp_slot.tscn" id="13_qg3pd"]
-[ext_resource type="Script" path="res://scripts/managers/input_manager.gd" id="13_yx2px"]
-[ext_resource type="Script" path="res://scripts/managers/opp_hand.gd" id="14_soyo2"]
+[ext_resource type="Script" uid="uid://cn3oaqo52mgpl" path="res://scripts/managers/player_hand.gd" id="11_ufn5a"]
+[ext_resource type="Script" uid="uid://b7wshw8ahwb8g" path="res://scripts/objects/deck.gd" id="11_vvfaq"]
+[ext_resource type="Script" uid="uid://cq2nltjkidsl" path="res://scripts/objects/number_card_slot.gd" id="12_ax18m"]
+[ext_resource type="PackedScene" uid="uid://cy0n78m2b03qb" path="res://scenes/objects/opp_slot.tscn" id="13_qg3pd"]
+[ext_resource type="Script" uid="uid://c7eomk1e08rvb" path="res://scripts/managers/input_manager.gd" id="13_yx2px"]
+[ext_resource type="Script" uid="uid://dux8g4kf24i7a" path="res://scripts/managers/opp_hand.gd" id="14_soyo2"]
 [ext_resource type="Texture2D" uid="uid://dpbwaatlnh02b" path="res://sprites/objects/opp_cards/opp_back_of_card.png" id="15_tdaay"]
-[ext_resource type="Script" path="res://scripts/objects/opp_deck.gd" id="17_s3uhn"]
-[ext_resource type="Script" path="res://scripts/managers/turn_manager.gd" id="18_bguuv"]
+[ext_resource type="Script" uid="uid://b8wpqvcgkp6vs" path="res://scripts/objects/opp_deck.gd" id="17_s3uhn"]
+[ext_resource type="Script" uid="uid://rt3d05gkycly" path="res://scripts/managers/turn_manager.gd" id="18_bguuv"]
+[ext_resource type="PackedScene" uid="uid://qga0to2nj61p" path="res://scenes/globals/points_manager.tscn" id="22_n1vtb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcwo2"]
 size = Vector2(96, 128)
@@ -122,8 +123,8 @@ offset_bottom = 400.0
 focus_mode = 0
 theme = ExtResource("11_jvgr5")
 theme_override_colors/font_hover_color = Color(0.682353, 0.447059, 0.831373, 1)
-theme_override_colors/font_pressed_color = Color(0.913725, 0.74902, 0.890196, 1)
 theme_override_colors/font_color = Color(0.92549, 0.627451, 0.243137, 1)
+theme_override_colors/font_pressed_color = Color(0.913725, 0.74902, 0.890196, 1)
 text = "END TURN"
 flat = true
 
@@ -230,7 +231,7 @@ z_index = -2
 position = Vector2(740, 76)
 script = ExtResource("17_s3uhn")
 
-[node name="Sprite2D" type="Sprite2D" parent="opp_deck"]
+[node name="opp_deck_sprite" type="Sprite2D" parent="opp_deck"]
 scale = Vector2(2, 2)
 texture = ExtResource("15_tdaay")
 
@@ -241,5 +242,7 @@ script = ExtResource("13_yx2px")
 script = ExtResource("18_bguuv")
 
 [node name="turn_timer" type="Timer" parent="."]
+
+[node name="points_manager" parent="." instance=ExtResource("22_n1vtb")]
 
 [connection signal="pressed" from="UI/end_turn" to="turn_manager" method="_on_end_turn_pressed"]

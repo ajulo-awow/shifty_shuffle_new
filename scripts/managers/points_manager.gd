@@ -1,3 +1,4 @@
 class_name PointsManager
 extends Node
-var point
+#
+var points: int = 0

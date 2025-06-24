@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qga0to2nj61p"]
+
+[ext_resource type="Script" uid="uid://2s72ditvmyna" path="res://scripts/managers/points_manager.gd" id="1_wxoms"]
+
+[node name="points_manager" type="Node"]
+script = ExtResource("1_wxoms")

@@ -1,8 +1,10 @@
 extends Node2D
 #
 var player_deck = ["number_card", "number_card", "number_card", "number_card", "add_card", "sub_card"]
-var card_database_ref
+var card_database_ref = preload("res://scripts/managers/card_database.gd").new()
 var drawn_card_this_turn: bool = false
+@onready var card_manager_ref: Node2D = $"../card_manager"
+@onready var player_hand_ref: Node2D = $"../player_hand"
 # consts
 const CARD_SCENE_PATH = "res://scenes/objects/card.tscn"
 const CARD_DRAW_SPEED = 0.2
@@ -10,8 +12,6 @@ const STARTING_HAND_SIZE = 5
 
 
 func _ready() -> void:
-	#
-	card_database_ref = preload("res://scripts/managers/card_database.gd").new()
 	#
 	player_deck.shuffle()
 	#
@@ -38,7 +38,6 @@ func draw_card():
 	#
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	# 
 	#var number_card_value = card_database_ref.CARDS["number_card"][0]
 	# number display
 	new_card.get_node("number_number").text = str(card_database_ref.CARDS[card_drawn_name][0])
@@ -46,39 +45,42 @@ func draw_card():
 	# card type
 	new_card.card_type = card_database_ref.CARDS[card_drawn_name][2]
 	# weighted rng
-	var random = randf()
+	var weighted_rng = randf()
 	#print(random)
 	# likelihood of being instantiated into hand
 	# 70%, number card
-	if random < 0.8:
-		#print("is number card")
-		# number label visibility
-		new_card.get_node("number_number").visible = true
-		new_card.get_node("special_number").visible = false
-		# image texture
-		new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/number_card.png")
+	if weighted_rng < 0.3:
+		new_card.card_type = "type_number"
+		if new_card.card_type == "type_number":
+			# number label visibility
+			new_card.get_node("number_number").visible = true
+			new_card.get_node("special_number").visible = false
+			# image texture
+			new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/number_card.png")
 	# 15%, add card
-	elif random < 0.9:
-		#print("is add card")
-		new_card.get_node("number_number").visible = false
-		new_card.get_node("special_number").visible = true
-		new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/add_card_special.png")
+	elif weighted_rng < 0.6:
+		new_card.card_type = "type_add"
+		if new_card.card_type == "type_add":
+			new_card.get_node("number_number").visible = false
+			new_card.get_node("special_number").visible = true
+			new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/add_card_special.png")
 	# 15%, sub card
 	else:
-		#print("is sub card")
-		new_card.get_node("number_number").visible = false
-		new_card.get_node("special_number").visible = true
-		new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/sub_card_special.png")
+		new_card.card_type = "type_sub"
+		if new_card.card_type == "type_sub":
+			new_card.get_node("number_number").visible = false
+			new_card.get_node("special_number").visible = true
+			new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/sub_card_special.png")
 	# 10%, swap card
 	#else:
 		#print("is swap card")
 		#new_card.get_node("number_number").visible = false
 		#new_card.get_node("special_number").visible = true
 		#new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/swap_card_special.png")
-	$"../card_manager".add_child(new_card)
+	card_manager_ref.add_child(new_card)
 	new_card.name = "card"
 	new_card.get_node("AnimationPlayer").play("card_flip")
-	$"../player_hand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+	player_hand_ref.add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	#
 	
 	

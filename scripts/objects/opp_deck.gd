@@ -1,7 +1,11 @@
 extends Node2D
 #
 var opp_deck = ["number_card", "number_card", "number_card", "number_card", "add_card", "sub_card"]
-var card_database_ref
+var card_database_ref = preload("res://scripts/managers/card_database.gd").new()
+@onready var opp_deck_sprite: Sprite2D = $opp_deck_sprite
+@onready var card_manager_ref: Node2D = $"../card_manager"
+@onready var opp_hand_ref: Node2D = $"../opp_hand"
+
 # consts
 const CARD_SCENE_PATH = "res://scenes/objects/opp_card.tscn"
 const CARD_DRAW_SPEED = 0.2
@@ -9,8 +13,6 @@ const STARTING_HAND_SIZE = 5
 
 
 func _ready() -> void:
-	#
-	card_database_ref = preload("res://scripts/managers/card_database.gd").new()
 	#
 	opp_deck.shuffle()
 	#
@@ -28,7 +30,7 @@ func draw_card():
 	#
 	if opp_deck.size() == 0:
 		#$Area2D/CollisionShape2D.disabled = true
-		$Sprite2D.visible = false
+		opp_deck_sprite.visible = false
 		pass
 	#
 	var card_scene = preload(CARD_SCENE_PATH)
@@ -71,6 +73,6 @@ func draw_card():
 		#new_card.get_node("number_number").visible = false
 		#new_card.get_node("special_number").visible = true
 		#new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/swap_card_special.png")
-	$"../card_manager".add_child(new_card)
+	card_manager_ref.add_child(new_card)
 	new_card.name = "card"
-	$"../opp_hand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+	opp_hand_ref.add_card_to_hand(new_card, CARD_DRAW_SPEED)

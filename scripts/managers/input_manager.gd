@@ -6,14 +6,13 @@ signal lmb_released
 const COLL_MASK_CARD = 1
 const COLL_MASK_CARD_DECK = 4
 # refs
-var card_manager_ref
-var deck_ref
+@onready var card_manager_ref: Node2D = $"../card_manager"
+@onready var player_deck_ref: Node2D = $"../player_deck"
+
 
 
 func _ready() -> void:
-	card_manager_ref = $"../card_manager"
-	deck_ref = $"../player_deck"
-	
+	pass
 	
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -41,6 +40,6 @@ func raycast_at_cursor():
 				card_manager_ref.start_drag(card_found)
 		# deck clicked
 		elif result_coll_mask == COLL_MASK_CARD_DECK:
-				deck_ref.draw_card()
+				player_deck_ref.draw_card()
 		
 		
