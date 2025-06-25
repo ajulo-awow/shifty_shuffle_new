@@ -142,52 +142,19 @@ script = ExtResource("8_ssqxr")
 
 [node name="player_card_slots" type="Node2D" parent="."]
 
-[node name="special_slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+[node name="player_slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
 z_index = -4
 position = Vector2(516.26, 523.705)
 
-[node name="Label" type="Label" parent="player_card_slots/special_slot"]
-offset_left = -52.0
-offset_top = -68.0
-offset_right = 52.0
-offset_bottom = 68.0
-theme = ExtResource("11_jvgr5")
-theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
-text = "S"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="number_slot" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+[node name="player_slot_2" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
 z_index = -4
 position = Vector2(627.56, 524)
 script = ExtResource("12_ax18m")
 
-[node name="Label" type="Label" parent="player_card_slots/number_slot"]
-offset_left = -52.0
-offset_top = -68.0
-offset_right = 52.0
-offset_bottom = 68.0
-theme = ExtResource("11_jvgr5")
-theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
-text = "N"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="number_slot2" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
+[node name="player_slot_3" parent="player_card_slots" instance=ExtResource("10_s6d7f")]
 z_index = -4
 position = Vector2(740.16, 523.16)
 script = ExtResource("12_ax18m")
-
-[node name="Label" type="Label" parent="player_card_slots/number_slot2"]
-offset_left = -52.0
-offset_top = -67.0
-offset_right = 52.0
-offset_bottom = 69.0
-theme = ExtResource("11_jvgr5")
-theme_override_colors/font_color = Color(0.533333, 0.631373, 0.843137, 1)
-text = "N"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="opp_card_slots" type="Node2D" parent="."]
 
