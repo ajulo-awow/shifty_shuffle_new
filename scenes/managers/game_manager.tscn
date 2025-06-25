@@ -162,11 +162,11 @@ script = ExtResource("12_ax18m")
 position = Vector2(60, 76)
 script = null
 
-[node name="opp_slot2" parent="opp_card_slots" instance=ExtResource("13_qg3pd")]
+[node name="opp_slot_2" parent="opp_card_slots" instance=ExtResource("13_qg3pd")]
 position = Vector2(172, 76)
 script = null
 
-[node name="opp_slot3" parent="opp_card_slots" instance=ExtResource("13_qg3pd")]
+[node name="opp_slot_3" parent="opp_card_slots" instance=ExtResource("13_qg3pd")]
 position = Vector2(284.7, 76)
 script = null
 
