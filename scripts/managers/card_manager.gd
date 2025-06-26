@@ -5,6 +5,8 @@ var screen_size
 var is_hovering_on_card
 @onready var player_hand_ref: Node2D = $"../player_hand"
 @onready var input_manager_ref: Node2D = $"../input_manager"
+var card_database_ref = preload("res://scripts/managers/card_database.gd").new()
+@export var points_manager_ref : PointsManager
 #
 const COLL_MASK_CARD = 1
 const COLL_MASK_CARD_SLOT = 2
@@ -17,6 +19,7 @@ func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	# 
 	input_manager_ref.connect("lmb_released", on_left_click_released)
+	#
 	
 	
 func _process(_delta: float) -> void:
@@ -48,12 +51,14 @@ func finish_drag():
 	var card_slot_found = raycast_check_for_card_slot()
 	#
 	if card_slot_found and not card_slot_found.card_in_slot:
+		#
 		if card_being_dragged.card_type == "type_number":
 			print("number")
 		if card_being_dragged.card_type == "type_add":
 			print("add")
+			points_manager_ref.player_points += card_being_dragged.card_points
 		if card_being_dragged.card_type == "type_sub":
-			print("sub")
+			points_manager_ref.opp_points -= card_being_dragged.card_points
 		#
 		player_hand_ref.remove_card_from_hand(card_being_dragged)
 		#

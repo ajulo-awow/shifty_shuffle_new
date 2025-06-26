@@ -38,18 +38,18 @@ func draw_card():
 	#
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	#var number_card_value = card_database_ref.CARDS["number_card"][0]
+	# card points
+	new_card.card_points = card_database_ref.CARDS[card_drawn_name][1]
 	# number display
 	new_card.get_node("number_number").text = str(card_database_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("special_number").text = str(card_database_ref.CARDS[card_drawn_name][1])
-	# card type
-	new_card.card_type = card_database_ref.CARDS[card_drawn_name][2]
 	# weighted rng
 	var weighted_rng = randf()
 	#print(random)
 	# likelihood of being instantiated into hand
 	# 70%, number card
 	if weighted_rng < 0.3:
+		# card type
 		new_card.card_type = "type_number"
 		if new_card.card_type == "type_number":
 			# number label visibility
