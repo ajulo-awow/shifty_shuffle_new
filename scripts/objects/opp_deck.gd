@@ -29,7 +29,7 @@ func draw_card():
 	#
 	if opp_deck.size() == 0:
 		#$Area2D/CollisionShape2D.disabled = true
-		opp_deck_sprite.visible = false
+		#opp_deck_sprite.visible = false
 		pass
 	#
 	var card_scene = preload(CARD_SCENE_PATH)
@@ -42,8 +42,8 @@ func draw_card():
 	# weighted rng
 	var random = randf()
 	# likelihood of being instantiated into hand
-	# 85%, number card
-	if random < 0.85:
+	# 70%, number card
+	if random < 0.70:
 		# card type
 		new_card.card_type = "type_number"
 		if new_card.card_type == "type_number":
@@ -52,25 +52,19 @@ func draw_card():
 			new_card.get_node("special_number").visible = false
 			# image texture
 			new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_number_card.png")
-	# 10%, add card
-	elif random < 0.95:
+	# 15%, add card
+	elif random < 0.85:
 		new_card.card_type = "type_add"
 		if new_card.card_type == "type_add":
 			new_card.get_node("number_number").visible = false
 			new_card.get_node("special_number").visible = true
 			new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_add_card.png")
-	# 5%, sub card
+	# 15%, sub card
 	else:
 		new_card.card_type = "type_sub"
 		if new_card.card_type == "type_sub":
 			new_card.get_node("number_number").visible = false
 			new_card.get_node("special_number").visible = true
 			new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_sub_card.png")
-	# 10%, swap card
-	#else:
-		#print("is swap card")
-		#new_card.get_node("number_number").visible = false
-		#new_card.get_node("special_number").visible = true
-		#new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/swap_card_special.png")
 	card_manager_ref.add_child(new_card)
 	opp_hand_ref.add_card_to_hand(new_card, CARD_DRAW_SPEED)

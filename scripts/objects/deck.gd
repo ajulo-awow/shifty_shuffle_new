@@ -47,8 +47,8 @@ func draw_card():
 	var weighted_rng = randf()
 	#print(random)
 	# likelihood of being instantiated into hand
-	# 85%, number card
-	if weighted_rng < 0.85:
+	# 70%, number card
+	if weighted_rng < 0.7:
 		# card type
 		new_card.card_type = "type_number"
 		if new_card.card_type == "type_number":
@@ -57,26 +57,20 @@ func draw_card():
 			new_card.get_node("special_number").visible = false
 			# image texture
 			new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/number_card.png")
-	# 10%, add card
-	elif weighted_rng < 0.95:
+	# 15%, add card
+	elif weighted_rng < 0.85:
 		new_card.card_type = "type_add"
 		if new_card.card_type == "type_add":
 			new_card.get_node("number_number").visible = false
 			new_card.get_node("special_number").visible = true
 			new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/add_card_special.png")
-	# 5%, sub card
+	# 15%, sub card
 	else:
 		new_card.card_type = "type_sub"
 		if new_card.card_type == "type_sub":
 			new_card.get_node("number_number").visible = false
 			new_card.get_node("special_number").visible = true
 			new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/sub_card_special.png")
-	# 10%, swap card
-	#else:
-		#print("is swap card")
-		#new_card.get_node("number_number").visible = false
-		#new_card.get_node("special_number").visible = true
-		#new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/swap_card_special.png")
 	card_manager_ref.add_child(new_card)
 	new_card.name = "card"
 	new_card.get_node("AnimationPlayer").play("card_flip")
