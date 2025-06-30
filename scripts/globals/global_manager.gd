@@ -3,7 +3,7 @@ extends Node
 var mouse_sensitivity = 0.5
 
 func _ready() -> void:
-	Engine.max_fps = 60
+	pass
 
 
 func _process(_delta: float) -> void:

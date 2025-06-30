@@ -97,6 +97,7 @@ offset_top = 320.0
 offset_right = 136.0
 offset_bottom = 448.0
 theme = ExtResource("8_jbdb8")
+theme_override_colors/font_color = Color(0.984314, 0.74902, 0.176471, 1)
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -109,6 +110,7 @@ offset_top = 152.0
 offset_right = 792.0
 offset_bottom = 280.0
 theme = ExtResource("8_jbdb8")
+theme_override_colors/font_color = Color(0.984314, 0.74902, 0.176471, 1)
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -116,10 +118,10 @@ vertical_alignment = 1
 [node name="end_turn" type="Button" parent="UI"]
 z_index = -4
 layout_mode = 0
-offset_left = 272.0
-offset_top = 328.0
-offset_right = 532.0
-offset_bottom = 400.0
+offset_left = 285.0
+offset_top = 344.0
+offset_right = 545.0
+offset_bottom = 416.0
 focus_mode = 0
 theme = ExtResource("11_jvgr5")
 theme_override_colors/font_hover_color = Color(0.682353, 0.447059, 0.831373, 1)
@@ -206,8 +208,9 @@ texture = ExtResource("15_tdaay")
 [node name="input_manager" type="Node2D" parent="."]
 script = ExtResource("13_yx2px")
 
-[node name="turn_manager" type="Node" parent="."]
+[node name="turn_manager" type="Node" parent="." node_paths=PackedStringArray("points_manager_ref")]
 script = ExtResource("18_bguuv")
+points_manager_ref = NodePath("../points_manager")
 
 [node name="turn_timer" type="Timer" parent="."]
 

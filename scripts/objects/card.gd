@@ -6,7 +6,7 @@ signal hovered_off
 var hand_pos
 var card_slot_card_in
 var card_type
-var card_points: int
+var card_points: int = 0
 var card_database_ref
 
 

@@ -20,7 +20,6 @@ func _ready() -> void:
 		draw_card()
 	
 
-
 func draw_card():
 	if opp_deck.size() == 0:
 		return
@@ -35,38 +34,38 @@ func draw_card():
 	#
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	# 
-	#var number_card_value = card_database_ref.CARDS["number_card"][0]
 	#
-	new_card.opp_points = card_database_ref.CARDS[card_drawn_name][1]
+	new_card.card_points = card_database_ref.CARDS[card_drawn_name][1]
+	#
 	new_card.get_node("number_number").text = str(card_database_ref.CARDS[card_drawn_name][0])
-	new_card.get_node("special_number").text = str(new_card.opp_points)
-	# card type
-	new_card.card_type = card_database_ref.CARDS[card_drawn_name][2]
+	new_card.get_node("special_number").text = str(new_card.card_points)
 	# weighted rng
 	var random = randf()
-	#print(random)
 	# likelihood of being instantiated into hand
-	# 70%, number card
-	if random < 0.8:
-		#print("is number card")
-		# number label visibility
-		new_card.get_node("number_number").visible = true
-		new_card.get_node("special_number").visible = false
-		# image texture
-		new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_number_card.png")
-	# 15%, add card
-	elif random < 0.9:
-		#print("is add card")
-		new_card.get_node("number_number").visible = false
-		new_card.get_node("special_number").visible = true
-		new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_add_card.png")
-	# 15%, sub card
+	# 85%, number card
+	if random < 0.85:
+		# card type
+		new_card.card_type = "type_number"
+		if new_card.card_type == "type_number":
+			# number label visibility
+			new_card.get_node("number_number").visible = true
+			new_card.get_node("special_number").visible = false
+			# image texture
+			new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_number_card.png")
+	# 10%, add card
+	elif random < 0.95:
+		new_card.card_type = "type_add"
+		if new_card.card_type == "type_add":
+			new_card.get_node("number_number").visible = false
+			new_card.get_node("special_number").visible = true
+			new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_add_card.png")
+	# 5%, sub card
 	else:
-		#print("is sub card")
-		new_card.get_node("number_number").visible = false
-		new_card.get_node("special_number").visible = true
-		new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_sub_card.png")
+		new_card.card_type = "type_sub"
+		if new_card.card_type == "type_sub":
+			new_card.get_node("number_number").visible = false
+			new_card.get_node("special_number").visible = true
+			new_card.get_node("card_image").texture = load("res://sprites/objects/opp_cards/opp_sub_card.png")
 	# 10%, swap card
 	#else:
 		#print("is swap card")
@@ -74,5 +73,4 @@ func draw_card():
 		#new_card.get_node("special_number").visible = true
 		#new_card.get_node("card_image").texture = load("res://sprites/objects/player_cards/special_cards/swap_card_special.png")
 	card_manager_ref.add_child(new_card)
-	new_card.name = "card"
 	opp_hand_ref.add_card_to_hand(new_card, CARD_DRAW_SPEED)

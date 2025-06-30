@@ -53,9 +53,8 @@ func finish_drag():
 	if card_slot_found and not card_slot_found.card_in_slot:
 		#
 		if card_being_dragged.card_type == "type_number":
-			print("number")
+			pass
 		if card_being_dragged.card_type == "type_add":
-			print("add")
 			points_manager_ref.player_points += card_being_dragged.card_points
 		if card_being_dragged.card_type == "type_sub":
 			points_manager_ref.opp_points -= card_being_dragged.card_points
